@@ -14,7 +14,7 @@ services:
         depends_on:
         - db    
         environment: 
-        - ODK_HOSTNAME=localhost
+        - ODK_HOSTNAME
         - ODK_ADMIN_USER=admin
         - ODK_ADMIN_USERNAME=admin
         - ODK_AUTH_REALM=ODK Aggregate
