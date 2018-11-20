@@ -1,0 +1,40 @@
+version: "3"
+services:
+
+    ##Front end 
+    aggr:   
+        image: unicef/odk-aggr
+        container_name: mapaasu-odkaggr-app
+        restart: unless-stopped
+        command: odk
+        ports:
+            - 12005:8080
+        links:
+        - db
+        depends_on:
+        - db    
+        environment: 
+        - ODK_HOSTNAME=localhost
+        - ODK_ADMIN_USER=admin
+        - ODK_ADMIN_USERNAME=admin
+        - ODK_AUTH_REALM=ODK Aggregate
+        - ODK_PORT=8080
+        - ODK_PORT_SECURE=8443
+        - DATABASE_URL=jdbc:postgresql://db:5432/odk
+        - POSTGRES_USER=postgres
+        - POSTGRES_PASSWORD=6bf7ca80-d007-47dc-8f9c-a4864a94e165
+        - FLYWAY
+        - ODK
+
+
+    ### Postgres database
+    db:
+        build: ./postgres
+        container_name: mapasu-odkaggr-db
+        environment:
+            POSTGRES_PASSWORD: 6bf7ca80-d007-47dc-8f9c-a4864a94e165
+            POSTGRES_USER: postgres
+        volumes:
+        - ./postgres/data:/var/lib/postgresql/data
+        - ./postgres/backup:/backup-postgres  
+        
