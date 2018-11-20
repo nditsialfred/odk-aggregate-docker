@@ -4,7 +4,7 @@ services:
     ##Front end 
     aggr:   
         image: unicef/odk-aggr
-        container_name: mapaasu-odkaggr-app
+        container_name: muniasu-odkaggr-app
         restart: unless-stopped
         command: odk
         ports:
@@ -30,7 +30,7 @@ services:
     ### Postgres database
     db:
         build: ./postgres
-        container_name: mapasu-odkaggr-db
+        container_name: muniasu-odkaggr-db
         environment:
             POSTGRES_PASSWORD: 6bf7ca80-d007-47dc-8f9c-a4864a94e165
             POSTGRES_USER: postgres
