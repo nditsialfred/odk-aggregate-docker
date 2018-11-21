@@ -8,7 +8,7 @@ services:
         restart: unless-stopped
         command: odk
         ports:
-            - 12005:8080
+            - 8080:8080
         links:
         - db
         depends_on:
