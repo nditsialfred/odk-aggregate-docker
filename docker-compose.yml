@@ -1,6 +1,17 @@
 version: "3"
 services:
 
+    ### Postgres database
+    db:
+        build: ./postgres
+        container_name: muniasu-odkaggr-db
+        environment:
+            POSTGRES_PASSWORD: 6bf7ca80-d007-47dc-8f9c-a4864a94e165
+            POSTGRES_USER: postgres
+        volumes:
+        - ./postgres/data:/var/lib/postgresql/data
+        - ./postgres/backup:/backup-postgres  
+        
     ##Front end 
     aggr:   
         image: unicef/odk-aggr
@@ -27,14 +38,5 @@ services:
         - ODK
 
 
-    ### Postgres database
-    db:
-        build: ./postgres
-        container_name: muniasu-odkaggr-db
-        environment:
-            POSTGRES_PASSWORD: 6bf7ca80-d007-47dc-8f9c-a4864a94e165
-            POSTGRES_USER: postgres
-        volumes:
-        - ./postgres/data:/var/lib/postgresql/data
-        - ./postgres/backup:/backup-postgres  
+
         
